@@ -17,5 +17,5 @@ Update the config file (a template can be found in the "step1_files" folder) to 
 
 When running the script from command line, add the config file as the only argument:
 ```
-python3 step1_segment.py step1_files/step1_config.txt
+python3 step1_segment.py path_to_file/step1_config.txt
 ```
