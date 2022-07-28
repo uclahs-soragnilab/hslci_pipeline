@@ -1,0 +1,5 @@
+Input Directory - Raw Data:
+/Users/ptebon/Desktop/2022_06_16_MCF7_subset_masked2
+
+Output Directory - Segmented Data:
+/Users/ptebon/Desktop/2022_06_16_MCF7_subset_tracked
