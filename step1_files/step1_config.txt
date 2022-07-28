@@ -1,0 +1,8 @@
+Input Directory - Raw Data:
+/Users/ptebon/Desktop/2022_06_16_MCF7_subset_raw
+
+Output Directory - Segmented Data:
+/Users/ptebon/Desktop/2022_06_16_MCF7_subset_masked2
+
+ML Model File
+./step1_files/final_unet_checkpoint.pkl
