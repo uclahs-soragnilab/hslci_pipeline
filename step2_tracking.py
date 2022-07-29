@@ -1,5 +1,6 @@
 import os
 import re
+import sys
 import json
 import scipy.io
 import pickle
@@ -75,7 +76,7 @@ def add_labels(mat):
     new = new.astype('float32')
     tifffile.imwrite('./temp.tif', new, imagej=True)
     # subprocess run docker trackmate
-    subprocess.run(['docker', 'run', '-v', f'{os.getcwd()}:/host', 'ardydavari/fiji:v1', 'ImageJ-linux64', '--headless', '--console', '/host/fiji_processimage.py', '--imagename', 'temp.tif'],
+    subprocess.run(['docker', 'run', '-v', f'{os.getcwd()}:/host', 'ardydavari/fiji:v1', 'ImageJ-linux64', '--headless', '--console', '/host/step2_files/fiji_processimage.py', '--imagename', 'temp.tif'],
                    #stdout=subprocess.DEVNULL,
                    #stderr=subprocess.DEVNULL,
                    )
@@ -233,25 +234,25 @@ def read_s2_config(input_txt):
         data_dest = f.readline() # Read line 5 (file path to destination)
 
     data_source = data_source[:-1] # Remove new line character
-    data_dest = data_dest[:-1]
+    data_dest = data_dest
     return data_source, data_dest
 
 def main():
     config_file = sys.argv[1] # Read config file from command line argument 
     data_origin, data_destination = read_s2_config(config_file) # Parse config file
 
-    matlabfiles = sorted(Path(data_origin).glob("**/*.mat"))
+    matlabfiles = sorted(Path(data_origin).glob("**/*_masked.mat"))
     out_primary_dir = data_destination
     
     for i, mat in tqdm(enumerate(matlabfiles)):
         # Identify dataset, well, and position of current file
         matstr = str(mat)
-        well_info = re.search("PhaseImageStack_(.*).mat",matstr).group(1)
+        well_info = re.search("PhaseImageStack_(.*)_masked.mat",matstr).group(1)
         well = re.search("_([A-H][0-9]{,2})_Pos",matstr).group(1)
-        position = re.search("Pos([0-9]{,2}).mat", matstr).group(1)
+        position = re.search("Pos([0-9]{,2})_masked.mat", matstr).group(1)
         # Define out directory for files
-        os.makedirs(os.path.dirname(out_primary_dir+well+'/'+well+'_Pos'+position+'/'), exist_ok=True) # Make the directory if necessary
-        out_fpath = out_primary_dir+well+'/'+well+'_Pos'+position+'/'+well_info
+        os.makedirs(os.path.dirname(out_primary_dir+'/'+well+'/'+well+'_Pos'+position+'/'), exist_ok=True) # Make the directory if necessary
+        out_fpath = out_primary_dir+'/'+well+'/'+well+'_Pos'+position+'/'+well_info
 
         # Load the .mat file
         print('\nFile '+str(i)+' ('+well_info+') loading...')

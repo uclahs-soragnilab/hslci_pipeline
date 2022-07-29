@@ -1,9 +1,9 @@
 pip3 install backcall==0.2.0
 pip3 install cycler==0.10.0
 pip3 install decorator==5.1.0
+Pip3 install docker==5.0.3
 pip3 install efficientnet-pytorch==0.6.3
 pip3 install h5py==3.6.0
-
 pip3 install imageio==2.9.0
 pip3 install ipython==7.30.1
 pip3 install jedi==0.18.0
