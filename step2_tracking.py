@@ -263,7 +263,6 @@ def main():
         # Use Trackmate to add labels
         tmpmat = add_labels(tmpmat)
         # Save labeled to .hdf5 file (before it gets overwritten, see line 258)
-
         save3Darray_tohdf5(tmpmat['labeled'],'labeled',out_fpath+'_labeled.h5')
 
         # Calculate the mass of each tracked organoid without clearing border
@@ -295,6 +294,9 @@ def main():
         np.savetxt(out_fpath+'_mass_tracks.csv',tmpmat['mass_tracks'],delimiter=',')
         # Save mass_tracks_wborderspots
         np.savetxt(out_fpath+'_mass_tracks_wborderspots.csv',tmpmat['mass_tracks_wborderspots'],delimiter=',')
+         # Save acquistion Times
+        with open(out_fpath+'_acquistionTimes.json', 'w') as outfile:
+            outfile.write(json.dumps(str(tmpmat['acquisitionTimes'])))
         # Save spots
         spots_json = json.dumps(tmpmat['spots'])
         with open(out_fpath+'_spots.json', 'w') as outfile:

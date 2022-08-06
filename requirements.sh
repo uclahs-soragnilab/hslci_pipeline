@@ -31,9 +31,9 @@ pip3 install segmentation-models-pytorch==0.2.0
 pip3 install six==1.16.0
 pip3 install tifffile==2021.11.2
 pip3 install timm==0.4.12
-pip3 install torch==1.10.0+cu113
+pip3 install torch==1.10.0
 pip3 install torchaudio==0.10.0+cu113
-pip3 install torchvision==0.11.1+cu113
+pip3 install torchvision==0.11.1
 pip3 install tqdm==4.62.3
 pip3 install traitlets==5.1.0
 pip3 install typing-extensions==3.10.0.2
