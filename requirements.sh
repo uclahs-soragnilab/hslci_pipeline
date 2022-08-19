@@ -14,6 +14,7 @@ pip3 install munch==2.5.0
 pip3 install networkx==2.6.3
 pip3 install numpy==1.21.4
 pip3 install parso==0.8.2
+pip3 install pandas==1.4.3
 pip3 install pexpect==4.8.0
 pip3 install pickleshare==0.7.5
 pip3 install Pillow==8.4.0

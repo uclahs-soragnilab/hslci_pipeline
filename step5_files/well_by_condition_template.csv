@@ -1,0 +1,12 @@
+vehicle,E2,F2,G2,B3,C3,D3,B7,C7,D7,E11,F11,G11
+0.1_stauro,E5,F5,G5,F6,E7,G8,F9,E10
+1_stauro,E4,F4,G4,G6,F7,E8,G9,F10
+10_stauro,E3,F3,G3,E6,G7,F8,E9,G10
+0.1_lapatinib,C2,B4,D6
+1_lapatinib,B2,D5,C6
+10_lapatinib,D2,C4,B5
+50_lapatinib,D4,C5,B6
+0.1_neratinib,D9,C10,B11
+1_neratinib,D8,C9,B10
+10_neratinib,C8,B9,D11
+50_neratinib,B8,D10,C11

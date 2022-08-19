@@ -1,0 +1,2 @@
+Input Directory - Tracked Data:
+/Users/soragnilab/Desktop/newmac_raw_test_tracked
