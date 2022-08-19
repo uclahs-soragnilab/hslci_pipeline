@@ -1,5 +1,5 @@
-Input Directory - Raw Data:
-/Users/ptebon/Desktop/2022_06_16_MCF7_subset_masked2
+Input Directory - Segmented Data:
+/Users/soragnilab/Desktop/newmac_raw_test_masked
 
-Output Directory - Segmented Data:
-/Users/ptebon/Desktop/2022_06_16_MCF7_subset_tracked
+Output Directory - Tracked Data:
+/Users/soragnilab/Desktop/newmac_raw_test_tracked
