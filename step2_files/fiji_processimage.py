@@ -198,9 +198,10 @@ def main():
     sys.setdefaultencoding('utf-8')
 
     #Reads input argument defined in track.py (reads temp.tif from dir)
-    args = get_arguments()
+    #args = get_arguments()
 
-    imp = IJ.openImage(args.imagename)
+    #imp = IJ.openImage(args.imagename)
+    imp = IJ.openImage('temp.tif')
     trackmate, spots, tracks = process(imp)
     labels = create_labels(trackmate)
 
