@@ -74,8 +74,36 @@ python3 step5_aggregation_bycondition.py path_to_file/step5_config.txt
 
 ## Step 6: Filtering using XGBoost
 Step 6 assesses all of the organoid mass tracks yielded from steps 1-5 and identifies if these tracks originate from an in-focus organoid or from an object that should be exlcuded from the analysis (out-of-focus organoids, debris, etc). This part requires R (we recommend Rstudio to easily run the R Markdown format) and the user must change the path to the data in line 28. Supporting functions required for analysis are stored under the "step6_files" directory. The training data for the machine learning is also stored in that directory. If desired, sample data is provided in the "/step6_files/sample_aggregated_unfiltered_data" directory as an example. The output of this script will be a text file that lists each of the TrackIDs corresponding to a tracked object followed by a binary decision that the track is valid (1) or invalid (0) for analysis.
+This process usually takes less than 1 minute total.
 
 Update the filepath in line 28 to contain the appropriate file paths for the data source (an unfiltered list of all of the organoid mass tracks ..._unfiltered_agg_mass_tracks.csv).
 
 To use the script:
 Run each code block of code sequentially in RStudio.
+
+# System Requirements
+This software is built to be OS-independent. It has been successfully utilized on the following operating systems:
+- MacOS Monterey 12.5 (Chip: Apple M1 Ultra)
+- Linux 5.13.19-2-MANJARO (Architecture: x86-64)
+
+The Python code has been tested on 3.10.5 and 3.8.9. The R code has been run on versions 4.2.1 and 4.1.1.
+
+Required non-standard hardware: None
+
+Python package requirements: Listed in "requirements.sh"
+R package requirements (software has been tested on the following versions):
+- plyr v1.8.7 or v1.8.6
+- dplyr v1.0.9
+- rpart v4.1.16/1.1-15
+- mlr3verse v0.2.5
+- mlr3 v0.14.0 or v0.13.2
+- pROC v1.18.0
+- precrec v0.12.9
+- xgboost v1.5.2.1 or v1.6.0.1
+- mlr3viz v0.5.7 or v 0.5.10
+
+# Installation Guide
+Unzip archive or pull from GitHub to the local machine. The installation process should take less than 1 minute. No additional installation is required if the system requirements are met. 
+
+# Reproduction Instructions
+Reproduction of the results requires the full input datasets and is run in accordance with the instructions provided above. Recreation of individual plots shown in the figures may require additional software (Prism 9) or additional scripts (R) that can be obtained upon reasonable request from the authors.
