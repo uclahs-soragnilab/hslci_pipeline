@@ -119,6 +119,7 @@ Unzip archive or pull from GitHub to the local machine. The installation process
   - Install [docker](https://docs.docker.com/install/)
   - Build the docker image, `docker build -t ardydavari/fiji:v1`
     - This takes 5-10 mins to build
+    - Allocate at least 16GB of RAM to Docker to run step2_tracking.py
 
 # Reproduction Instructions
 Reproduction of the results requires the full input datasets and is run in accordance with the instructions provided above. Recreation of individual plots shown in the figures may require additional software (Prism 9) or additional scripts (R) that can be obtained upon reasonable request from the authors.
