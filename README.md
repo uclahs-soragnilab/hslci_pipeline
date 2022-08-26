@@ -1,6 +1,15 @@
 # hslci_pipeline
 Data analysis pipeline for HSLCI screening data
+https://www.biorxiv.org/content/10.1101/2021.10.03.462896v3
 
+# Contents
+
+- [Running the Pipeline](#running-the-pipeline)
+- [System Requirements](#system-requirements)
+- [Installation Guide](#installation-guide)
+- [Reproduction Instructions](#reproduction-instructions)
+
+# Running the Pipeline
 ## Preparation
 Create a virtual environment and run requirements.sh inside to install the required package versions
 ```
@@ -103,7 +112,13 @@ R package requirements (software has been tested on the following versions):
 - mlr3viz v0.5.7 or v 0.5.10
 
 # Installation Guide
-Unzip archive or pull from GitHub to the local machine. The installation process should take less than 1 minute. No additional installation is required if the system requirements are met. 
+Unzip archive or pull from GitHub to the local machine. The installation process should take less than 1 minute. No additional installation is required if the system requirements are met and Docker is installed. 
+
+## Installing Docker
+- To build image and run from scratch:
+  - Install [docker](https://docs.docker.com/install/)
+  - Build the docker image, `docker build -t ardydavari/fiji:v1`
+    - This takes 5-10 mins to build
 
 # Reproduction Instructions
 Reproduction of the results requires the full input datasets and is run in accordance with the instructions provided above. Recreation of individual plots shown in the figures may require additional software (Prism 9) or additional scripts (R) that can be obtained upon reasonable request from the authors.
