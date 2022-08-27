@@ -47,6 +47,16 @@ When running the script from command line, add the config file as the only argum
 python3 step2_tracking.py path_to_file/step2_config.txt
 ```
 
+**Potential issues:**
+
+If the tracking times out or takes more than 5 minutes to run a file, allocate more resources to Docker. We have had success with as few as 4 CPUs, 10.5GB Memory, 2GB Swap, and 60GB Disk Image, but it may require additional resources depending on the system.
+
+If the following error arises, log in to Docker Desktop.
+```
+docker: Error response from daemon: Head “https://registry-1.docker.io/v2/ardydavari/fiji/manifests/v1”: unauthorized: incorrect username or password.
+```
+
+
 ## Step 3: Summarization
 This step converts the Trackmate outputs stored as .json files into csv files organized into tables of mass tracks (each row is a single organoid) and spot information (each row is a spot in a single frame). See the Trackmate documentation https://imagej.net/plugins/trackmate/ for more details on the nomenclature of a spot, track, etc.
 
@@ -72,7 +82,7 @@ python3 step4_aggregation_bywell.py path_to_file/step4_config.txt
 ```
 
 ## Step 5: Aggregation by condition
-Step 5 aggregates all of the spots and tracks from all positions within a well plate and combines them in a table with all others that were treated with the same experimental conditions. This part requires a third input, a csv file that lists all of the conditions used and the subsequent well IDs that are treated with that coneition. A template file is available under step5_files.
+Step 5 aggregates all of the spots and tracks from all positions within a well plate and combines them in a table with all others that were treated with the same experimental conditions. This part requires a third input, a csv file that lists all of the conditions used and the subsequent well IDs that are treated with that condition. A template file is available under step5_files. It also requires that a folder named "condition-level_aggregate_data" is made under the directory listed in the step5 configuration file.
 
 Update the config file (a template can be found in the "step5_files" folder) to contain the appropriate **file path** for the data source (tracked outputs, specifically ...spots.json, ...acquistionTimes.json and ...mass_tracks.csv)
 This process usually takes less than 1 second per file.
