@@ -16,6 +16,10 @@ Create a virtual environment and run requirements.sh inside to install the requi
 ```
 python3 -m venv virtual_environment_name
 ```
+Activate the virtual environment
+```
+source virtual_environment_name/bin/activate
+```
 Once the environment is active, install the requirements
 ```
 bash requirements.sh
