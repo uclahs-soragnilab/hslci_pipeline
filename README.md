@@ -111,9 +111,8 @@ To use the script:
 Run each code block of code sequentially in RStudio.
 
 # System Requirements
-This software is built to be OS-independent. It has been successfully utilized on the following operating systems:
+This software is built for the following operating systems:
 - MacOS Monterey 12.5 (Chip: Apple M1 Ultra)
-- Linux 5.13.19-2-MANJARO (Architecture: x86-64)
 
 The Python code has been tested on 3.10.5 and 3.8.9. The R code has been run on versions 4.2.1 and 4.1.1.
 
