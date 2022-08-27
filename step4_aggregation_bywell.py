@@ -236,7 +236,7 @@ def main():
             file_list2 = sorted(Path(pathstr+well+'/').glob("**/*_spot_data_unfiltered.csv")) #list all summarized spots files associated with selected well
             
             if not file_list2: # Check to see if this is empty, if empty, move to next well
-                print("Well "+well+" does not have any data avaialable")
+                print("Well "+well+" does not have any data available")
                 continue
             
             print("Aggregating data for well "+well)
