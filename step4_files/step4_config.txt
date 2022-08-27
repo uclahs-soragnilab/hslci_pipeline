@@ -1,5 +1,5 @@
-Input Directory - Segmented Data:
+Input Directory - Summarized Data:
 /absolute/path/to/step2_output
 
-Output Directory - Tracked Data:
+Output Directory - Data aggregated by well:
 /absolute/path/to/step4_output
