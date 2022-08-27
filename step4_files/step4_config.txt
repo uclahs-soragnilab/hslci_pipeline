@@ -1,5 +1,5 @@
 Input Directory - Segmented Data:
-/Users/soragnilab/Desktop/newmac_raw_test_tracked
+/absolute/path/to/step2_output
 
 Output Directory - Tracked Data:
-/Users/soragnilab/Desktop/newmac_raw_test_aggregated
+/absolute/path/to/step4_output
