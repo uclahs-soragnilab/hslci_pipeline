@@ -8,6 +8,7 @@ https://www.biorxiv.org/content/10.1101/2021.10.03.462896v3
 - [System Requirements](#system-requirements)
 - [Installation Guide](#installation-guide)
 - [Reproduction Instructions](#reproduction-instructions)
+- [License](#license)
 
 # Running the Pipeline
 ## Preparation
@@ -123,3 +124,6 @@ Unzip archive or pull from GitHub to the local machine. The installation process
 
 # Reproduction Instructions
 Reproduction of the results requires the full input datasets and is run in accordance with the instructions provided above. Recreation of individual plots shown in the figures may require additional software (Prism 9) or additional scripts (R) that can be obtained upon reasonable request from the authors.
+
+# License
+This project is covered under the **GNU General Public License, version 2.0 (GPL-2.0)**.
