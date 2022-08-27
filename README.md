@@ -100,6 +100,11 @@ python3 step5_aggregation_bycondition.py path_to_file/step5_config.txt
 Step 6 assesses all of the organoid mass tracks yielded from steps 1-5 and identifies if these tracks originate from an in-focus organoid or from an object that should be exlcuded from the analysis (out-of-focus organoids, debris, etc). This part requires R (we recommend Rstudio to easily run the R Markdown format) and the user must change the path to the data in line 28. Supporting functions required for analysis are stored under the "step6_files" directory. The training data for the machine learning is also stored in that directory. If desired, sample data is provided in the "/step6_files/sample_aggregated_unfiltered_data" directory as an example. The output of this script will be a text file that lists each of the TrackIDs corresponding to a tracked object followed by a binary decision that the track is valid (1) or invalid (0) for analysis.
 This process usually takes less than 1 minute total.
 
+Install all necesssary packages using the Rstudio GUI, or use the command line according to the following documentation (https://support.rstudio.com/hc/en-us/articles/219949047-Installing-older-versions-of-packages). The version numbers for each package are under **System Requirements** below.
+```
+require(devtools)
+install_version("package_name", version = "x.x.x", repos = "http://cran.us.r-project.org")
+```
 Update the filepath in line 28 to contain the appropriate file paths for the data source (an unfiltered list of all of the organoid mass tracks ..._unfiltered_agg_mass_tracks.csv).
 
 To use the script:
