@@ -127,3 +127,11 @@ Reproduction of the results requires the full input datasets and is run in accor
 
 # License
 This project is covered under the **GNU General Public License, version 2.0 (GPL-2.0)**.
+___
+License
+Author: Peyton Tebon (ptebon@mednet.ucla.edu), Bowen Wang (bowenwang410@g.ucla.edu), Alice Soragni (alices@mednet.ucla.edu)
+hslci_pipeline is licensed under the GNU General Public License version 2. See the file LICENSE for the terms of the GNU GPL license.
+hslci_pipeline takes processes imaging data collected from a high-speed live cell interferometer to segment, track, and quantify organoids.
+Copyright (C) 2022 University of California Los Angeles (“Soragni Lab”) All rights reserved.
+This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
