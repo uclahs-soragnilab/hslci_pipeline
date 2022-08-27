@@ -25,7 +25,7 @@ source("./step6_files/subset.IQR.R")
 ```{r include=FALSE}
 # Set working directory to the "hslci_pipeline" folder
 training_data_path <- "./step6_files/training_data"
-unlabeled_data_path <- "./step6_files/sample_aggregated_unfiltered_data"
+unlabeled_data_path <- "./step4_output/condition-level_aggregate_data" # This must be the output path from step 5 ending with "/condition-level_aggregate_data"
 ```
 
 ## Load unlabeled data
@@ -33,7 +33,7 @@ unlabeled_data_path <- "./step6_files/sample_aggregated_unfiltered_data"
 ### LOAD DATA #################################################################################
 #BT474.pathways <- list.files('Data/unfiltered_mass_tracks_BT474');
 #MCF7.pathways  <- list.files('Data/unfiltered_mass_tracks_MCF7');
-unlabeled.pathways <- list.files(unlabeled_data_path);
+unlabeled.pathways <- list.files(unlabeled_data_path, pattern = 'agg_mass_tracks_unfiltered.csv');
 
 #BT474.pathways <- paste0('Data/unfiltered_mass_tracks_BT474/', BT474.pathways);
 #MCF7.pathways  <- paste0('Data/unfiltered_mass_tracks_MCF7/', MCF7.pathways);
