@@ -19,7 +19,7 @@ pip3 install pexpect==4.8.0
 pip3 install pickleshare==0.7.5
 pip3 install Pillow==8.4.0
 pip3 install regex==2021.11.10
-pip3 install retrainedmodels==0.7.4
+pip3 install pretrainedmodels==0.7.4
 pip3 install prompt-toolkit==3.0.21
 pip3 install ptyprocess==0.7.0
 pip3 install Pygments==2.10.0
