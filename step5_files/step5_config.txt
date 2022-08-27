@@ -1,8 +1,8 @@
 Input Directory - Well-level aggregate Data:
-/Users/ptebon/Desktop/hslci_pipeline-main/step4_output
+/absolute/path/to/step4_output
 
-Output Directory - Condition-level aggregate Data: (must be same as input directory above)
-/Users/ptebon/Desktop/hslci_pipeline-main/step4_output
+Output Directory - Condition-level aggregate Data: (must be same as input directory above, be sure to make a new folder called "condition-level_aggregate_data" in this directory!)
+/absolute/path/to/step4_output
 
 Well-Condition Assignment File (.csv):
 ./step5_files/well_by_condition_test.csv
