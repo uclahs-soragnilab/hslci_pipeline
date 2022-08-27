@@ -85,6 +85,9 @@ When running the script from command line, add the config file as the only argum
 python3 step4_aggregation_bywell.py path_to_file/step4_config.txt
 ```
 
+**Bug notice:**
+The output directory from step4 may contain a "?" at the end of the folder name. Be aware of this and either 1. manually remove the ?, or 2. update the step5_config.txt file to **exactly** match the output directory created.
+
 ## Step 5: Aggregation by condition
 Step 5 aggregates all of the spots and tracks from all positions within a well plate and combines them in a table with all others that were treated with the same experimental conditions. This part requires a third input, a csv file that lists all of the conditions used and the subsequent well IDs that are treated with that condition. A template file is available under step5_files. It also requires that a folder named "condition-level_aggregate_data" is made under the directory listed in the step5 configuration file.
 
@@ -112,9 +115,11 @@ Run each code block of code sequentially in RStudio.
 
 # System Requirements
 This software is built for the following operating systems:
-- MacOS Monterey 12.5 (Chip: Apple M1 Ultra)
+- MacOS Monterey 12.2.1 (Chip: 6-core Intel Core i5)
 
-The Python code has been tested on 3.10.5 and 3.8.9. The R code has been run on versions 4.2.1 and 4.1.1.
+The Python code has been tested on 3.9.1. The R code has been run on versions 4.2.1 and 4.1.1.
+
+This code may also function using alternative MacOS operating systems and architectures. If you will be using one of these systems, it is imperative that the proper package versions in the requirements.sh file are installed to avoid errors.
 
 Required non-standard hardware: None
 
