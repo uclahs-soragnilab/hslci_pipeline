@@ -248,7 +248,7 @@ def main():
                 print('\nFile '+str(i), end =": ")
                 # Load spot_data_unfiltered and mass_tracks files
                 spots_table = np.genfromtxt(csvfile,delimiter=',')
-                filestr = str(csvfile)
+                filestr = str(csvfile).replace('\\','/')
                 mass_tracks = np.genfromtxt(filestr[:-25]+'_mass_tracks.csv',delimiter=',')
                 
                 # Identify well and position of current file, turn this into a numerically coded index ([Row 1-8][Col 01-12][Pos 01-99]00000)

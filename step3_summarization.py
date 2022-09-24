@@ -112,7 +112,7 @@ def main():
 
     for i, jsonfile in tqdm(enumerate(file_list)):
         #print('\nFile '+str(i))
-        jsonstr = str(jsonfile) # Turn json file into a string for parsin well and position info
+        jsonstr = str(jsonfile).replace('\\','/') # Turn json file into a string for parsin well and position info
 
         # Identify well and position of current file, turn this into a numerically coded index ([Row 1-8][Col 01-12][Pos 01-99]00000)
         well = re.search("_([A-H][0-9]{,2})_Pos",jsonstr).group(1)
