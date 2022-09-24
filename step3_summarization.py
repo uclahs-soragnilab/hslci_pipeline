@@ -12,7 +12,7 @@ from datetime import datetime
 '''
 step3_summarization.py
 
-Use this script to iterate over a directory of step2_tracking.py output files (specifically ...spots.json, ...acquistionTimes.json and ...mass_tracks.csv) and generate spot_data_unfiltered
+Use this script to iterate over a directory of step2_tracking.py output files (specifically ...spots.json, ...acquisitionTimes.json and ...mass_tracks.csv) and generate spot_data_unfiltered
 and _mass_tracks.csv files. Precedes step4_aggregate_python.py script.
 '''
 
@@ -95,8 +95,6 @@ def read_s3_config(input_txt):
     with open(input_txt) as f:
         tmp = f.readline() # Read line 1 (Prompt)
         data_source = f.readline() # Read line 2 (file path to data source)
-
-    data_source = data_source[:-1] # Remove new line character
     return data_source
 
 def main():
@@ -134,7 +132,7 @@ def main():
             print('No tracks at this position')
             continue
 
-        with open(f_prefix+'_acquistionTimes.json') as f:
+        with open(f_prefix+'_acquisitionTimes.json') as f:
             timestamps = json.load(f)
         timestamps = timestamps.replace('\n','')
         timestamps = timestamps.replace("['",'')

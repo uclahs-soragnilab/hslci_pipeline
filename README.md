@@ -126,7 +126,7 @@ Required non-standard hardware: None
 Python package requirements: Listed in "requirements.sh"
 R package requirements (software has been tested on the following versions):
 - plyr v1.8.7 or v1.8.6
-- dplyr v1.0.9
+- dplyr v1.0.9 or v1.0.10
 - rpart v4.1.16/1.1-15
 - mlr3verse v0.2.5
 - mlr3 v0.14.0 or v0.13.2
