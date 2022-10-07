@@ -1,2 +1,2 @@
 Input Directory - Tracked Data:
-/absolute/path/to/step2_output
+K:/tracked/2022_06_16_MCF7_test_BW_processed_stacks_UNet_Trackmate_PTLinux

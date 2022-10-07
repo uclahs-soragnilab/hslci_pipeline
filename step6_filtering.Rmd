@@ -1,7 +1,9 @@
 ---
 title: "step6_filtering"
 output: html_document
-date: '2022-08-26'
+date: '2022-10-04'
+editor_options: 
+  chunk_output_type: console
 ---
 
 ## Import libraries and source functions
@@ -25,7 +27,7 @@ source("./step6_files/subset.IQR.R")
 ```{r include=FALSE}
 # Set working directory to the "hslci_pipeline" folder
 training_data_path <- "./step6_files/training_data"
-unlabeled_data_path <- "./step5_output/condition-level_aggregate_data" # This must be the output path from step 5 ending with "/condition-level_aggregate_data"
+unlabeled_data_path <- "K:/tracked/2022_06_16_MCF7_test_BW_processed_stacks_UNet_Trackmate_PTLinux/condition-level_aggregate_data" # This must be the output path from step 5 ending with "/condition-level_aggregate_data"
 ```
 
 ## Load unlabeled data
@@ -39,7 +41,7 @@ unlabeled.pathways <- list.files(unlabeled_data_path, pattern = 'agg_mass_tracks
 #MCF7.pathways  <- paste0('Data/unfiltered_mass_tracks_MCF7/', MCF7.pathways);
 unlabeled.pathways <- paste0(unlabeled_data_path,'/',unlabeled.pathways);
 
-max.timepoint  <- 381;
+max.timepoint  <- 407;
 #combined.pathways <- c(BT474.pathways, MCF7.pathways);
 combined.pathways <- unlabeled.pathways;
 ```

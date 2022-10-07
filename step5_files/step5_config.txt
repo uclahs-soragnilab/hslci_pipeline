@@ -1,8 +1,8 @@
 Input Directory - Well-level aggregate Data:
-/absolute/path/to/step4_output
+K:/tracked/2022_06_16_MCF7_test_BW_processed_stacks_UNet_Trackmate_PTLinux
 
 Output Directory - Condition-level aggregate Data: (must be same as input directory above, be sure to make a new folder called "condition-level_aggregate_data" in this directory!)
-/absolute/path/to/step4_output
+K:/tracked/2022_06_16_MCF7_test_BW_processed_stacks_UNet_Trackmate_PTLinux
 
 Well-Condition Assignment File (.csv):
-./step5_files/well_by_condition_test.csv
+K:/tracked/2022_06_16_MCF7_test_BW_processed_stacks_UNet_Trackmate_PTLinux/condition-level_aggregate_data/well_by_condition.csv
