@@ -248,7 +248,7 @@ def main():
 
     for mat in tqdm(mats):
         # define the path
-        tmp_fname = str(mat).split("/")[-1]
+        tmp_fname = str(mat).split("\\")[-1]
         newmatpath = Path(data_destination+"/"+tmp_fname[:-4]+"_masked.mat")
         
         # skip files that already exist
