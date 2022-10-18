@@ -3,7 +3,7 @@ title: "step6_filtering"
 output: html_document
 date: '2022-10-17'
 editor_options: 
-  chunk_output_type: console
+  chunk_output_type: inline
 ---
 
 ## Import libraries and source functions
