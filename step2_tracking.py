@@ -88,6 +88,7 @@ def add_labels(mat):
         newmat = mat
         newmat['spots'] = temp_dict['spots']
         newmat['tracks'] = temp_dict['tracks']
+        pkl_file.close()
         Path('./temp_data.obj').unlink()
     else:
         newmat = mat
