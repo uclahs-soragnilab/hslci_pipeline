@@ -1,5 +1,5 @@
 Input Directory - Summarized Data:
-K:/tracked/2022_06_16_MCF7_test_BW_processed_stacks_UNet_Trackmate_PTLinux
+F:/tracked/2022_06_16_MCF7_test_BW_processed_stacks_tracked
 
 Output Directory - Data aggregated by well:
-K:/tracked/2022_06_16_MCF7_test_BW_processed_stacks_UNet_Trackmate_PTLinux
+F:/tracked/2022_06_16_MCF7_test_BW_processed_stacks_tracked

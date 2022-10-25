@@ -77,19 +77,19 @@ def main():
             print("Adding well "+str(counter+1)+" "+well)
             if counter == 0: # For the first run through
                 tmp = pd.read_csv(glob.glob(pathstr+"well-level_aggregate_data/"+well+"/*_agg_mass_tracks_unfiltered.csv")[0]) # Read data
-                tmp.to_csv(outpathstr+condition_name+"_agg_mass_tracks_unfiltered.csv") # Save data (note this will overwrite existing data, this is intentional)
+                tmp.to_csv(outpathstr+condition_name+"_agg_mass_tracks_unfiltered.csv",index=False) # Save data (note this will overwrite existing data, this is intentional)
 
                 tmp = pd.read_csv(glob.glob(pathstr+"well-level_aggregate_data/"+well+"/*_agg_spots_unfiltered.csv")[0])
-                tmp.to_csv(outpathstr+condition_name+"_agg_spots_unfiltered.csv")
+                tmp.to_csv(outpathstr+condition_name+"_agg_spots_unfiltered.csv",index=False)
 
                 counter += 1
 
             else: # If other wells have already been processed for this condition in this run
                 tmp = pd.read_csv(glob.glob(pathstr+"well-level_aggregate_data/"+well+"/*_agg_mass_tracks_unfiltered.csv")[0]) # Read data
-                tmp.to_csv(outpathstr+condition_name+"_agg_mass_tracks_unfiltered.csv",mode='a',index=True,header=False) # Append data to existing csv
+                tmp.to_csv(outpathstr+condition_name+"_agg_mass_tracks_unfiltered.csv",mode='a',index=False,header=False) # Append data to existing csv
 
                 tmp = pd.read_csv(glob.glob(pathstr+"well-level_aggregate_data/"+well+"/*_agg_spots_unfiltered.csv")[0])
-                tmp.to_csv(outpathstr+condition_name+"_agg_spots_unfiltered.csv",mode='a',index=True,header=False)
+                tmp.to_csv(outpathstr+condition_name+"_agg_spots_unfiltered.csv",mode='a',index=False,header=False)
 
                 counter += 1
 

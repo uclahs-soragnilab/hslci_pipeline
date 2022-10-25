@@ -1,7 +1,7 @@
 ---
 title: "step6_filtering"
 output: html_document
-date: '2022-10-17'
+date: '2022-10-25'
 editor_options: 
   chunk_output_type: inline
 ---
@@ -27,7 +27,7 @@ source("./step6_files/subset.IQR.R")
 ```{r include=FALSE}
 # Set working directory to the "hslci_pipeline" folder
 training_data_path <- "./step6_files/training_data"
-unlabeled_data_path <- "K:/tracked/2022_06_16_MCF7_test_BW_processed_stacks_tracked/condition-level_aggregate_data" # This must be the output path from step 5 ending with "/condition-level_aggregate_data"
+unlabeled_data_path <- "F:/tracked/2022_06_16_MCF7_test_BW_processed_stacks_tracked/condition-level_aggregate_data" # This must be the output path from step 5 ending with "/condition-level_aggregate_data"
 ```
 
 ## Load unlabeled data
@@ -41,6 +41,7 @@ unlabeled.pathways <- list.files(unlabeled_data_path, pattern = 'agg_mass_tracks
 #MCF7.pathways  <- paste0('Data/unfiltered_mass_tracks_MCF7/', MCF7.pathways);
 unlabeled.pathways <- paste0(unlabeled_data_path,'/',unlabeled.pathways);
 
+min.timepoint <- 24;
 max.timepoint  <- 407;
 #combined.pathways <- c(BT474.pathways, MCF7.pathways);
 combined.pathways <- unlabeled.pathways;
@@ -52,7 +53,7 @@ unlabeled.data <- NULL;
 
 for (i in 1:length(combined.pathways)) {
     
-    file.data <- read.csv(combined.pathways[i], header = FALSE);
+    file.data <- read.csv(combined.pathways[i], header = TRUE);
     
     #if (i <= 66) {
     #    file.data$UTrackID <- as.character(paste0("BT",format(file.data$UTrackID,scientific = FALSE)));
@@ -60,9 +61,9 @@ for (i in 1:length(combined.pathways)) {
     #    file.data$UTrackID <- as.character(paste0("MCF",format(file.data$UTrackID,scientific = FALSE)));
     #}
     
-    row.names(file.data)      <- file.data$UTrackID;
+    row.names(file.data)      <- format(file.data$UTrackID, scientific=FALSE);
     file.data                 <- file.data[, -c(1:2)]; # Remove first 2 label columns 
-    file.data                 <- file.data[,1:max.timepoint]; # Trim to max timepoint
+    file.data                 <- file.data[,min.timepoint:max.timepoint]; # Trim to min timepoint and max timepoint
     file.data[file.data == 0] <- NA; # Replace 0s with NAs
     
     # Extract features of interest
@@ -99,7 +100,7 @@ MCF7.E2             <- read.csv(paste0(training_data_path,'/2021_07_24_MCF-7_E2_
 MCF7.F8             <- read.csv(paste0(training_data_path,'/2021_07_24_MCF-7_F8_unfiltered_agg_mass_tracks.csv'));
 
 #Trim to max.timepoint
-max.timepoint = 381; 
+max.timepoint = 384; 
 BT474.E2            <- BT474.E2[,2:(max.timepoint+2)]; #2: to cut off X column, max+2 due to x and UTrackID columns
 BT474.B8            <- BT474.B8[,2:(max.timepoint+2)];
 MCF7.E2             <- MCF7.E2[,2:(max.timepoint+2)];
@@ -212,6 +213,6 @@ well.predictions <- data.frame(
     Model.pred = viability.preds
     );
 
-write.table(well.predictions, paste0(unlabeled_data_path,'/organoid_track_validity_prediction.txt'), sep = '\t')
+write.csv(well.predictions, paste0(unlabeled_data_path,'/organoid_track_validity_prediction.csv'), row.names=TRUE)
 ```
 
