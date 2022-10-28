@@ -27,7 +27,7 @@ source("./step6_files/subset.IQR.R")
 ```{r include=FALSE}
 # Set working directory to the "hslci_pipeline" folder
 training_data_path <- "./step6_files/training_data"
-unlabeled_data_path <- "F:/tracked/2022_06_16_MCF7_test_BW_processed_stacks_tracked/condition-level_aggregate_data/condition-level_aggregate_data" # This must be the output path from step 5 ending with "/condition-level_aggregate_data"
+unlabeled_data_path <- "F:/tracked/2022_06_16_MCF7_test_BW_processed_stacks_tracked/condition-level_aggregate_data" # This must be the output path from step 5 ending with "/condition-level_aggregate_data"
 ```
 
 ## Load unlabeled data
