@@ -1,7 +1,7 @@
 ---
 title: "step6_filtering"
 output: html_document
-date: '2022-10-25'
+date: '2022-10-28'
 editor_options: 
   chunk_output_type: inline
 ---
@@ -27,7 +27,7 @@ source("./step6_files/subset.IQR.R")
 ```{r include=FALSE}
 # Set working directory to the "hslci_pipeline" folder
 training_data_path <- "./step6_files/training_data"
-unlabeled_data_path <- "F:/tracked/2022_06_16_MCF7_test_BW_processed_stacks_tracked/condition-level_aggregate_data" # This must be the output path from step 5 ending with "/condition-level_aggregate_data"
+unlabeled_data_path <- "F:/tracked/2022_06_16_MCF7_test_BW_processed_stacks_tracked/condition-level_aggregate_data/condition-level_aggregate_data" # This must be the output path from step 5 ending with "/condition-level_aggregate_data"
 ```
 
 ## Load unlabeled data
@@ -100,7 +100,7 @@ MCF7.E2             <- read.csv(paste0(training_data_path,'/2021_07_24_MCF-7_E2_
 MCF7.F8             <- read.csv(paste0(training_data_path,'/2021_07_24_MCF-7_F8_unfiltered_agg_mass_tracks.csv'));
 
 #Trim to max.timepoint
-max.timepoint = 384; 
+max.timepoint = 381; 
 BT474.E2            <- BT474.E2[,2:(max.timepoint+2)]; #2: to cut off X column, max+2 due to x and UTrackID columns
 BT474.B8            <- BT474.B8[,2:(max.timepoint+2)];
 MCF7.E2             <- MCF7.E2[,2:(max.timepoint+2)];
