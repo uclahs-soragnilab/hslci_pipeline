@@ -1,5 +1,5 @@
 process segment_MATLAB_files {
-    // debug false
+    // debug true
     container "unetsegmentation:1.14"
     
     publishDir path: params.output_dir,
@@ -12,9 +12,8 @@ process segment_MATLAB_files {
           path(output_dir)
     
     output:
-        file ".command.*"
-        path "$output_dir", emit: segmented_dir_location
-
+        //    path "to_be_summarized.txt"
+    
     script:
            """
            lscpu

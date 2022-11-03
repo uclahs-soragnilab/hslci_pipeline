@@ -21,26 +21,29 @@ def read_s5_config(input_txt):
     """
     Parses the text file supplied in the argument to determine path of data source, destination, and map (well to condition) location
     """
-    with open(input_txt) as f:
-        tmp = f.readline() # Read line 1 (Prompt)
-        data_source = f.readline() # Read line 2 (file path to data source)
-        tmp = f.readline() # Read line 3 (empty)
-        tmp = f.readline() # Read line 4 (Prompt)
-        data_dest = f.readline() # Read line 5 (file path to destination)
-        tmp = f.readline() # Read line 6 (empty)
-        tmp = f.readline() # Read line 7 (Prompt)
-        map_file = f.readline() # Read line 8 (file of ML model)
+    # with open(input_txt) as f:
+    #     tmp = f.readline() # Read line 1 (Prompt)
+    #     data_source = f.readline() # Read line 2 (file path to data source)
+    #     tmp = f.readline() # Read line 3 (empty)
+    #     tmp = f.readline() # Read line 4 (Prompt)
+    #     data_dest = f.readline() # Read line 5 (file path to destination)
+    #     tmp = f.readline() # Read line 6 (empty)
+    #     tmp = f.readline() # Read line 7 (Prompt)
+    #     map_file = f.readline() # Read line 8 (file of ML model)
 
-    data_source = data_source[:-1] # Remove new line character
-    data_dest = data_dest[:-1]
-    return data_source, data_dest, map_file
+    # data_source = data_source[:-1] # Remove new line character
+    # data_dest = data_dest[:-1]
+    # return data_source, data_dest, map_file
 
 def main():
     starttime = datetime.now()
 
     ## Define data source
-    config_file = sys.argv[1] # Read config file from command line argument 
-    data_origin, data_destination, condition_file = read_s5_config(config_file) # Parse config file
+    # config_file = sys.argv[1] # Read config file from command line argument 
+    # data_origin, data_destination, condition_file = read_s5_config(config_file) # Parse config file
+    data_origin = sys.argv[1]
+    data_destination = sys.argv[2]
+    condition_file = sys.argv[3]
 
     pathstr = data_origin + '/'
     subdir_str = 'condition-level_aggregate_data/'

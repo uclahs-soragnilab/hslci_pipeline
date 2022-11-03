@@ -1,5 +1,8 @@
-process track_images_FIJI {
+
+process aggregate_by_condition {
+    // debug true
     container 'unetsegmentation:1.14'
+
     publishDir path: params.output_dir,
         pattern: ".command.*",
         mode: "copy",
@@ -7,14 +10,17 @@ process track_images_FIJI {
 
     input:
           path(output_dir)
+
     
     output:
         file ".command.*"
-        path "$output_dir", emit: tracked_dir
-            
+        // path "$output_dir", emit: aggregate_by_condition
+
     script:
            """
-           python3  /src/script/step2_tracking.py \
-           "$output_dir" 
+           python3  /src/script/step6_aggregation_bycondition.py \
+           "$output_dir/" \
+           "$output_dir/" \
+           "${params.well_level_information}"
            """
 }
