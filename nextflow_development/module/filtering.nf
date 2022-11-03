@@ -1,14 +1,13 @@
 process segment_MATLAB_files {
     // debug true
-    container "unetsegmentation:1.14"
-    
+    container 'unetsegmentation:1.14'
+
     publishDir path: params.output_dir,
         pattern: ".command.*",
         mode: "copy",
         saveAs: { "${params.output_dir}/process_log/log${file(it).getName()}"}
 
     input:
-          path(input_dir)
           path(output_dir)
     
     output:
