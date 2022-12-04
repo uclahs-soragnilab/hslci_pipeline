@@ -11,13 +11,15 @@ library(mlr3viz);
 
 
 ### LOAD SUPPLEMENTARY R SCRIPTS 
-source("./step6_files/count.gaps.R")
-source("./step6_files/n.lgst.dm.dt.R")
-source("./step6_files/subset.IQR.R")
+source("/src/script/count.gaps.R")
+source("/src/script/n.lgst.dm.dt.R")
+source("/src/script/subset.IQR.R")
+
+args = commandArgs(trailingOnly=TRUE)
 
 ## DEFINE PATHS TO TRAINING AND UNLABELED DATA 
-training_data_path <- "./step6_files/training_data"
-unlabeled_data_path <- "../nextflow_development/output_step4b/condition-level_aggregate_data" # This must be the output path from step 5 ending with "/condition-level_aggregate_data"
+training_data_path <- "/src/script/training_data"
+unlabeled_data_path <- file.path(args[1], "condition-level_aggregate_data") # This must be the output path from step 5 ending with "/condition-level_aggregate_data"
 
 ## LOAD UNLABELED DATA
 #BT474.pathways <- list.files('Data/unfiltered_mass_tracks_BT474');

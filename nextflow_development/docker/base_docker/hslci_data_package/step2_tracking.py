@@ -76,7 +76,7 @@ def add_labels(mat):
     new = new.astype('float32')
     tifffile.imwrite('./temp.tif', new, imagej=True)
     # subprocess run docker trackmate
-    subprocess.run(['/src/script/ImageJ-linux64', '--headless', '--console', '/src/script/fiji_processimage.py', '--imagename', 'temp.tif'],
+    subprocess.run(['/src/script/Fiji_app/ImageJ-linux64', '--headless', '--console', '/src/script/fiji_processimage.py', '--imagename', 'temp.tif'],
                    #stdout=subprocess.DEVNULL,
                    #stderr=subprocess.DEVNULL,
                    )
