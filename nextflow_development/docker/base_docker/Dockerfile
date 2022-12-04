@@ -58,8 +58,25 @@ RUN pip3 install torch==1.10.0 \
 RUN pip3 install zernike==0.0.32 \
     wcwidth==0.2.5 
 
-COPY ./hslci_data_package/* /src/script/
+ENV DEBIAN_FRONTEND=noninteractive
 
+RUN apt-get update \
+   &&  apt-get -y install r-base
+RUN R --save -e "install.packages('remotes', repos='http://cran.us.r-project.org')" \
+     && R --save -e "remotes::install_version('plyr', version = '1.8.8', repos = 'http://cran.us.r-project.org')" \
+     && R --save -e "remotes::install_version('dplyr', version = '1.0.7', repos = 'http://cran.us.r-project.org')" \
+     && R --save -e "remotes::install_version('rpart', version = '4.1.16', repos = 'http://cran.us.r-project.org')" \
+     && R --save -e "remotes::install_version('rpart', version = '4.1.16', repos = 'http://cran.us.r-project.org')" \
+     && R --save -e "remotes::install_version('mlr3verse', version = '0.2.5', repos = 'http://cran.us.r-project.org')" \
+     && R --save -e "remotes::install_version('mlr3', version = '0.13.3', repos = 'http://cran.us.r-project.org')" \
+     && R --save -e "remotes::install_version('pROC', version = '1.17.0.1', repos = 'http://cran.us.r-project.org')" \
+     && R --save -e "remotes::install_version('precrec', version = '0.12.8', repos = 'http://cran.us.r-project.org')" \
+     && R --save -e "remotes::install_version('xgboost', version = '1.5.2.1', repos = 'http://cran.us.r-project.org')" \
+     && R --save -e "remotes::install_version('mlr3viz', version = '0.5.9', repos = 'http://cran.us.r-project.org')" 
+
+ 
+ADD ./hslci_data_package/ /src/script/
+     
 CMD ["/bin/bash"]
 
 # ENTRYPOINT ["/bin/bash", "-l", "-c"]

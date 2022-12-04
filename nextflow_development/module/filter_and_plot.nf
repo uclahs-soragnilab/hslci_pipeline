@@ -1,7 +1,10 @@
-process segment_MATLAB_files {
-    // debug true
+process filter_and_plot {
     container 'unetsegmentation:1.14'
-
+    
+    publishDir path: "${params.output_dir}",
+        pattern: "*.pdf",
+        mode: 'copy'
+    
     publishDir path: params.output_dir,
         pattern: ".command.*",
         mode: "copy",
@@ -11,15 +14,13 @@ process segment_MATLAB_files {
           path(output_dir)
     
     output:
-        //    path "to_be_summarized.txt"
-    
+        file ".command.*"
+        path "$output_dir"
+        path "Rplots.pdf"
+
     script:
            """
-           lscpu
-           free -g
-           python3 /src/script/step1_segment.py \
-           "$input_dir" \
-           "$output_dir" \
-           "/src/script/final_unet_checkpoint.pkl"
+           Rscript  /src/script/step6_filtering.R $output_dir
+           ls *.pdf
            """
 }

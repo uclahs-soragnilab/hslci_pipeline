@@ -8,7 +8,7 @@ include { track_images_FIJI                   } from './module/track_images.nf'
 include { summarize_data                      } from './module/summarize_data.nf'
 include { aggregate_by_well                   } from './module/aggregate.nf'
 include { aggregate_by_condition              } from './module/aggregate.nf'
-// include { final_filtering                     } from './module/filtering.nf'
+include { filter_and_plot                     } from './module/filter_and_plot.nf'
 
 
 log.info """
@@ -34,19 +34,19 @@ workflow {
     // STEP1: Segment Images
     segment_MATLAB_files(params.input_image_folder_path, params.output_dir)
     
-    // STEP2: TRACKING (track_images_FIJI.out)
+    // // STEP2: TRACKING (track_images_FIJI.out)
     track_images_FIJI(segment_MATLAB_files.out.segmented_dir_location)
 
-    // // STEP3: Summarize Data
+    // // // STEP3: Summarize Data
     summarize_data(track_images_FIJI.out.tracked_dir)
     
-    // // STEP4: AGGREGATE BY WELL
+    // // // // STEP4: AGGREGATE BY WELL
     aggregate_by_well(summarize_data.out.summarized_dir_location)
     
-    // // STEP5: AGGREGATE BY CONDITION
+    // // // STEP5: AGGREGATE BY CONDITION
     aggregate_by_condition(aggregate_by_well.out.aggregated_by_well_dir, params.well_level_information)
     
     // // STEP6: FILTERING
-    // final_filtering(params.output_dir, params.hslci_pipeline_dir)
+    filter_and_plot(aggregate_by_condition.out.aggregated_by_condition_dir)
 
 }
