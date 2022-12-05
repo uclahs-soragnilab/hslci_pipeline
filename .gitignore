@@ -1,7 +1,7 @@
 # Development
-./nextflow_development/output
-./nextflow_development/docker/base_docker/hslci_data_package/Fiji_app
-./test/input/PhaseImageStack_2021_08_02_BT-474_B7_Pos4.mat
+nextflow_development/output
+nextflow_development/docker/base_docker/hslci_data_package/Fiji_app
+nextflow_development/test/PhaseImageStack_2021_08_02_BT-474_B7_Pos4.mat
 
 # R
 .Rhistory
