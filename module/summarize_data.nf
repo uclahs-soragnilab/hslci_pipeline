@@ -1,6 +1,6 @@
 process summarize_data {
     // debug false
-    container 'unetsegmentation:1.14'
+    container params.docker_image_unetsegmentation
 
     publishDir path: params.output_dir,
         pattern: ".command.*",

@@ -1,5 +1,5 @@
 process track_images_FIJI {
-    container 'unetsegmentation:1.14'
+    container params.docker_image_unetsegmentation
     publishDir path: params.output_dir,
         pattern: ".command.*",
         mode: "copy",

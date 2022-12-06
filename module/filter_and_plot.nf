@@ -1,5 +1,5 @@
 process filter_and_plot {
-    container 'unetsegmentation:1.14'
+    container params.docker_image_unetsegmentation
     
     publishDir path: "${params.output_dir}",
         pattern: "*.pdf",
