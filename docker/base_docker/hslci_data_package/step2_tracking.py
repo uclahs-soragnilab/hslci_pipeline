@@ -88,6 +88,7 @@ def add_labels(mat):
         newmat = mat
         newmat['spots'] = temp_dict['spots']
         newmat['tracks'] = temp_dict['tracks']
+        pkl_file.close()
         Path('./temp_data.obj').unlink()
     else:
         newmat = mat
@@ -297,8 +298,8 @@ def main():
         np.savetxt(out_fpath+'_mass_tracks.csv',tmpmat['mass_tracks'],delimiter=',')
         # Save mass_tracks_wborderspots
         np.savetxt(out_fpath+'_mass_tracks_wborderspots.csv',tmpmat['mass_tracks_wborderspots'],delimiter=',')
-         # Save acquistion Times
-        with open(out_fpath+'_acquistionTimes.json', 'w') as outfile:
+         # Save acquisition Times
+        with open(out_fpath+'_acquisitionTimes.json', 'w') as outfile:
             outfile.write(json.dumps(str(tmpmat['acquisitionTimes'])))
         # Save spots
         spots_json = json.dumps(tmpmat['spots'])

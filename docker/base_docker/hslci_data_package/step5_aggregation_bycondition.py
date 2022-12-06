@@ -84,13 +84,17 @@ def main():
 
                 tmp = pd.read_csv(glob.glob(pathstr+"well-level_aggregate_data/"+well+"/*_agg_spots_unfiltered.csv")[0])
                 tmp.to_csv(outpathstr+condition_name+"_agg_spots_unfiltered.csv")
+                
+                counter += 1
 
             else: # If other wells have already been processed for this condition in this run
                 tmp = pd.read_csv(glob.glob(pathstr+"well-level_aggregate_data/"+well+"/*_agg_mass_tracks_unfiltered.csv")[0]) # Read data
-                tmp.to_csv(outpathstr+condition_name+"_agg_spots_unfiltered.csv",mode='a',index=True,header=False) # Append data to existing csv
+                tmp.to_csv(outpathstr+condition_name+"_agg_mass_tracks_unfiltered.csv",mode='a',index=True,header=False) # Append data to existing csv
 
                 tmp = pd.read_csv(glob.glob(pathstr+"well-level_aggregate_data/"+well+"/*_agg_spots_unfiltered.csv")[0])
                 tmp.to_csv(outpathstr+condition_name+"_agg_spots_unfiltered.csv",mode='a',index=True,header=False)
+                
+                counter += 1
 
     stoptime = datetime.now()
     print("Combination by condition complete\nStart time: "+starttime.strftime("%m/%d/%Y %H:%M:%S")+"\nStop time: "+stoptime.strftime("%m/%d/%Y %H:%M:%S"))
