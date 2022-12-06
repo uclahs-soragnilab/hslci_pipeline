@@ -66,7 +66,6 @@ RUN R --save -e "install.packages('remotes', repos='http://cran.us.r-project.org
      && R --save -e "remotes::install_version('plyr', version = '1.8.8', repos = 'http://cran.us.r-project.org')" \
      && R --save -e "remotes::install_version('dplyr', version = '1.0.7', repos = 'http://cran.us.r-project.org')" \
      && R --save -e "remotes::install_version('rpart', version = '4.1.16', repos = 'http://cran.us.r-project.org')" \
-     && R --save -e "remotes::install_version('rpart', version = '4.1.16', repos = 'http://cran.us.r-project.org')" \
      && R --save -e "remotes::install_version('mlr3verse', version = '0.2.5', repos = 'http://cran.us.r-project.org')" \
      && R --save -e "remotes::install_version('mlr3', version = '0.13.3', repos = 'http://cran.us.r-project.org')" \
      && R --save -e "remotes::install_version('pROC', version = '1.17.0.1', repos = 'http://cran.us.r-project.org')" \
@@ -76,7 +75,12 @@ RUN R --save -e "install.packages('remotes', repos='http://cran.us.r-project.org
 
  
 ADD ./hslci_data_package/ /src/script/
-     
+
+RUN apt-get install -y wget \
+    && wget https://downloads.imagej.net/fiji/archive/20220222-1015/fiji-linux64.tar.gz \
+    && tar -xvzf fiji-linux64.tar.gz \
+    && rm fiji-linux64.tar.gz
+ 
 CMD ["/bin/bash"]
 
 # ENTRYPOINT ["/bin/bash", "-l", "-c"]
