@@ -1,8 +1,0 @@
-Input Directory - Raw Data:
-/absolute/path/to/Folder_containing_mat_files
-
-Output Directory - Segmented Data:
-/absolute/path/to/step1_output
-
-ML Model File
-./step1_files/final_unet_checkpoint.pkl

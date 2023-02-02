@@ -1,5 +1,0 @@
-Input Directory - Summarized Data:
-/absolute/path/to/step2_output
-
-Output Directory - Data aggregated by well:
-/absolute/path/to/step4_output

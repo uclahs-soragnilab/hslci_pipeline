@@ -100,9 +100,11 @@ def read_s3_config(input_txt):
 def main():
     starttime = datetime.now()
     ## Define data source
-    config_file = sys.argv[1] # Read config file from command line argument 
-    pathstr = read_s3_config(config_file) + '/' # Parse config file
-    
+    # config_file = sys.argv[1] # Read config file from command line argument 
+    # pathstr = read_s3_config(config_file) + '/' # Parse config file
+
+    pathstr =  sys.argv[1]
+
     # Define dictionary for row letter to row number
     row_dict = {'A':1, 'B':2, 'C':3, 'D':4, 'E':5, 'F':6, 'G':7, 'H':8}
     

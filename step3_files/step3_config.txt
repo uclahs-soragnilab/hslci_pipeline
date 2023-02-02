@@ -1,2 +1,0 @@
-Input Directory - Tracked Data:
-/absolute/path/to/step2_output

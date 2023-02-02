@@ -218,30 +218,33 @@ def test_matlab(mat):
         plt.imsave(f'./test/{str(ind)}_orig.png', mat['png'][:,:,ind], cmap='gray')
         plt.imsave(f'./test/{str(ind)}_mask.png', mat['mask'][:,:,ind], cmap='gray')
 
-def read_s1_config(input_txt):
-    """
-    Parses the text file supplied in the argument to determine path of data source, destination, and model location
-    """
-    with open(input_txt) as f:
-        tmp = f.readline() # Read line 1 (Prompt)
-        data_source = f.readline() # Read line 2 (file path to data source)
-        tmp = f.readline() # Read line 3 (empty)
-        tmp = f.readline() # Read line 4 (Prompt)
-        data_dest = f.readline() # Read line 5 (file path to destination)
-        tmp = f.readline() # Read line 6 (empty)
-        tmp = f.readline() # Read line 7 (Prompt)
-        model_file = f.readline() # Read line 8 (file of ML model)
+# def read_s1_config(input_txt):
+#     """
+#     Parses the text file supplied in the argument to determine path of data source, destination, and model location
+#     """
+#     with open(input_txt) as f:
+#         tmp = f.readline() # Read line 1 (Prompt)
+#         data_source = f.readline() # Read line 2 (file path to data source)
+#         tmp = f.readline() # Read line 3 (empty)
+#         tmp = f.readline() # Read line 4 (Prompt)
+#         data_dest = f.readline() # Read line 5 (file path to destination)
+#         tmp = f.readline() # Read line 6 (empty)
+#         tmp = f.readline() # Read line 7 (Prompt)
+#         model_file = f.readline() # Read line 8 (file of ML model)
 
-    data_source = data_source[:-1] # Remove new line character
-    data_dest = data_dest[:-1]
-    return data_source, data_dest, model_file
+#     data_source = data_source[:-1] # Remove new line character
+#     data_dest = data_dest[:-1]
+#     return data_source, data_dest, model_file
 
 def main():
     """
     Process all the matlab files and segment them using UNet
     """
-    config_file = sys.argv[1] # Read config file from command line argument 
-    data_origin, data_destination, model_file = read_s1_config(config_file) # Parse config file
+    # config_file = sys.argv[1] # Read config file from command line argument 
+    # data_origin, data_destination, model_file = read_s1_config(config_file) # Parse config file
+    data_origin = sys.argv[1]
+    data_destination = sys.argv[2]
+    model_file = sys.argv[3]
 
     model = load_trained_model(model_file)
     mats = list(Path(data_origin).glob('**/PhaseImageStack*.mat')) # Find all mat files

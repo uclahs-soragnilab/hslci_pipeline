@@ -1,11 +1,4 @@
----
-title: "step6_filtering"
-output: html_document
-date: '2022-08-26'
----
-
-## Import libraries and source functions
-```{r include=FALSE}
+### LOAD PACKAGES ###
 library(plyr);
 library(dplyr);
 library(rpart);
@@ -16,21 +9,19 @@ library(precrec);
 library(xgboost);
 library(mlr3viz);
 
-source("./step6_files/count.gaps.R")
-source("./step6_files/n.lgst.dm.dt.R")
-source("./step6_files/subset.IQR.R")
-```
 
-## Define paths to training and unlabeled data
-```{r include=FALSE}
-# Set working directory to the "hslci_pipeline" folder
-training_data_path <- "./step6_files/training_data"
-unlabeled_data_path <- "./step5_output/condition-level_aggregate_data" # This must be the output path from step 5 ending with "/condition-level_aggregate_data"
-```
+### LOAD SUPPLEMENTARY R SCRIPTS 
+source("/src/script/count.gaps.R")
+source("/src/script/n.lgst.dm.dt.R")
+source("/src/script/subset.IQR.R")
 
-## Load unlabeled data
-```{r}
-### LOAD DATA #################################################################################
+args = commandArgs(trailingOnly=TRUE)
+
+## DEFINE PATHS TO TRAINING AND UNLABELED DATA 
+training_data_path <- "/src/script/training_data"
+unlabeled_data_path <- file.path(args[1], "condition-level_aggregate_data") # This must be the output path from step 5 ending with "/condition-level_aggregate_data"
+
+## LOAD UNLABELED DATA
 #BT474.pathways <- list.files('Data/unfiltered_mass_tracks_BT474');
 #MCF7.pathways  <- list.files('Data/unfiltered_mass_tracks_MCF7');
 unlabeled.pathways <- list.files(unlabeled_data_path, pattern = 'agg_mass_tracks_unfiltered.csv');
@@ -42,10 +33,8 @@ unlabeled.pathways <- paste0(unlabeled_data_path,'/',unlabeled.pathways);
 max.timepoint  <- 381;
 #combined.pathways <- c(BT474.pathways, MCF7.pathways);
 combined.pathways <- unlabeled.pathways;
-```
 
-## Calculate features for unlabeled data
-```{r}
+## CALCULATE FEATURES FOR UNLABELED DATA
 unlabeled.data <- NULL;
 
 for (i in 1:length(combined.pathways)) {
@@ -85,10 +74,8 @@ for (i in 1:length(combined.pathways)) {
 }
 ### SAVE FILE ##############################################################
 #write.table(unlabeled.data, 'Track Verification/OrganoidClassifier/Data/2022-03-11_OrganoidTracking_unlabeled.classifier.data.txt', sep = '\t')
-```
 
-## Load the model training data
-```{r, echo=FALSE}
+## LOAD THE MODEL TRAINING DATA
 ### LOAD TRAINING DATA #################################################################################
 # Load the mass track data for the training dataset
 BT474.E2            <- read.csv(paste0(training_data_path,'/2021_08_02_BT-474_E2_unfiltered_agg_mass_tracks.csv'));
@@ -108,10 +95,8 @@ BT474.E2.validation <- read.table(paste0(training_data_path,'/2022-03-09_BT474_E
 BT474.B8.validation <- read.table(paste0(training_data_path,'/2022-03-09_BT474_B8_unfiltered_manuallabel.txt'), sep = '\t', header = T);
 MCF7.E2.validation  <- read.table(paste0(training_data_path,'/2022-03-09_MCF7_E2_unfiltered_manuallabel.txt'), sep = '\t', header = T);
 MCF7.F8.validation  <- read.table(paste0(training_data_path,'/2022-03-09_MCF7_F8_unfiltered_manuallabel.txt'), sep = '\t', header = T);
-```
 
-## Train the model
-```{r}
+## TRAIN THE MODEL
 #unlabeled.data <- read.table('Data/2022-03-09_OrganoidTracking_unlabeled.classifier.data.txt', sep = '\t', header = T);
 #unlabelled.data <- read.tabdelimited('Data/2022-03-07_OrganoidTracking_unlabelled.classifier.data.txt');
 
@@ -169,11 +154,8 @@ classifier.data <- merge(
 
 # Set labels as a factor variable
 classifier.data$ground.truth <- factor(classifier.data$ground.truth);
-```
 
-## Train the ML model
-# Using XGBoost Classifier to predict viability
-```{r}
+## TRAIN THE ML MODEL
 # Train the mL model
 task        <- as_task_classif(classifier.data[, c(2:ncol(classifier.data))], target = 'ground.truth');
 learner     <- lrn('classif.xgboost', predict_type = 'prob', eval_metric = 'logloss' );
@@ -198,10 +180,8 @@ cat(paste0('Cross-validation score (CV): ', model.results$CV.score));
 
 ### PLOT ROC  ######################################################################
 autoplot(pred, type = 'roc');
-```
 
-## Apply trained model to full dataset
-```{r}
+## APLY TRAINED MODEL TO FULL DATASET
 viability.preds <- predict(learner, unlabeled.data[,c(2:ncol(unlabeled.data))]);
 table(viability.preds);
 
@@ -211,5 +191,3 @@ well.predictions <- data.frame(
     );
 
 write.table(well.predictions, paste0(unlabeled_data_path,'/organoid_track_validity_prediction.txt'), sep = '\t')
-```
-

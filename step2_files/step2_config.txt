@@ -1,5 +1,0 @@
-Input Directory - Segmented Data:
-/absolute/path/to/step1_output
-
-Output Directory - Tracked Data:
-/absolute/path/to/step2_output

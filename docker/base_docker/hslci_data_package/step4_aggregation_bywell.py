@@ -204,8 +204,10 @@ def main():
     starttime = datetime.now()
     
     ## Define data source
-    config_file = sys.argv[1] # Read config file from command line argument 
-    pathstr, outpathstr = read_s4_config(config_file)
+    #config_file = sys.argv[1] # Read config file from command line argument 
+    #pathstr, outpathstr = read_s4_config(config_file)
+    pathstr = sys.argv[1]
+    outpathstr = sys.argv[2]
 
     # Program options
     aggregate_opt = True # True means the aggregation and filtering runs, False means it is skipped
