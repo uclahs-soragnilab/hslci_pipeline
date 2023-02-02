@@ -26,7 +26,7 @@ process aggregate_by_well {
 
 process aggregate_by_condition {
     // debug true
-    container 'unetsegmentation:1.14'
+    container params.docker_image_unetsegmentation
 
     publishDir path: params.output_dir,
         pattern: ".command.*",
