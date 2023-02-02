@@ -35,6 +35,51 @@ With nextflow already installed and the docker image already pulled or built in 
 ```
 nextflow run main.nf -c hslci_pipeline.config
 ```
+<<<<<<< HEAD
+=======
+require(devtools)
+install_version("package_name", version = "x.x.x", repos = "http://cran.us.r-project.org")
+```
+Update the filepath in line 28 to contain the appropriate file paths for the data source (an unfiltered list of all of the organoid mass tracks ..._unfiltered_agg_mass_tracks.csv).
+
+To use the script:
+Run each code block of code sequentially in RStudio.
+
+# System Requirements
+This software is built for the following operating systems:
+- MacOS Monterey 12.2.1 (Chip: 6-core Intel Core i5)
+
+The Python code has been tested on 3.9.1. The R code has been run on versions 4.2.1 and 4.1.1.
+
+This code may also function using alternative MacOS operating systems and architectures. If you will be using one of these systems, it is imperative that the proper package versions in the requirements.sh file are installed to avoid errors.
+
+Required non-standard hardware: None
+
+Python package requirements: Listed in "requirements.sh"
+R package requirements (software has been tested on the following versions):
+- plyr v1.8.7 or v1.8.6
+- dplyr v1.0.9 or v1.0.10
+- rpart v4.1.16/1.1-15
+- mlr3verse v0.2.5
+- mlr3 v0.14.0 or v0.13.2
+- pROC v1.18.0
+- precrec v0.12.9
+- xgboost v1.5.2.1 or v1.6.0.1
+- mlr3viz v0.5.7 or v 0.5.10
+
+# Installation Guide
+Unzip archive or pull from GitHub to the local machine. The installation process should take less than 1 minute. No additional installation is required if the system requirements are met and Docker is installed. 
+
+## Installing Docker
+- To build image and run from scratch:
+  - Install [docker](https://docs.docker.com/install/)
+  - Build the docker image, `docker build -t ardydavari/fiji:v1`
+    - This takes 5-10 mins to build
+    - Allocate at least 16GB of RAM to Docker to run step2_tracking.py
+
+# Reproduction Instructions
+Reproduction of the results requires the full input datasets and is run in accordance with the instructions provided above. Recreation of individual plots shown in the figures may require additional software (Prism 9) or additional scripts (R) that can be obtained upon reasonable request from the authors.
+>>>>>>> 8c4c1cb8ebcec08f1772cca70e0f1b0dcec4f5e0
 
 # License
 This project is covered under the **GNU General Public License, version 2.0 (GPL-2.0)**.
