@@ -36,11 +36,11 @@ nextflow run main.nf -c hslci_pipeline.config
 - Docker support is necessary to run the pipeline. Notes on how to install can be found here: [docker](https://docs.docker.com/install/)
 - To pull the docker image:
 ```
-docker pull alfredoenrique/unetsegmentation:1.0.0
+docker pull soragnilab/unetsegmentation:1.0.0
 ```
 - The docker image is automatically pulled from dockerhub within the pipeline, but if no internet connection it can be built locally before running. Dockerfile can be found in the docker/base_docker directory.
 ```
-docker build -t alfredoenrique/unetsegmentation:1.0.0 .
+docker build -t soragnilab/unetsegmentation:1.0.0 .
 ```
 
 ## Additional Guidance
