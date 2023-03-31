@@ -1,5 +1,6 @@
 # hslci_pipeline
 Data analysis pipeline for HSLCI screening data https://www.biorxiv.org/content/10.1101/2021.10.03.462896v3. This pipeline takes a directory containing MATLAB files with the unwrapped data from the interferometer and segments the images to identify the boundaries of the organoids in each frame. The output files are also .mat files.
+[![DOI](https://zenodo.org/badge/518654120.svg)](https://zenodo.org/badge/latestdoi/518654120)
 
 # Contents
 
