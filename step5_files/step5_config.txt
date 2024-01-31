@@ -1,8 +1,8 @@
 Input Directory - Well-level aggregate Data:
-F:/tracked/2022_06_16_MCF7_test_BW_processed_stacks_tracked
+H:/tracked/2022_08_14_SARC0139_BW_tracked
 
 Output Directory - Condition-level aggregate Data: (must be same as input directory above, be sure to make a new folder called "condition-level_aggregate_data" in this directory!)
-F:/tracked/2022_06_16_MCF7_test_BW_processed_stacks_tracked
+H:/tracked/2022_08_14_SARC0139_BW_tracked
 
 Well-Condition Assignment File (.csv):
-F:/tracked/2022_06_16_MCF7_test_BW_processed_stacks_tracked/condition-level_aggregate_data/well_by_condition.csv
+H:/tracked/2022_08_14_SARC0139_BW_tracked/condition-level_aggregate_data/20220814_SARC0139_well_by_condition.csv
