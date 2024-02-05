@@ -249,7 +249,7 @@ def main():
             for i, csvfile in tqdm(enumerate(file_list2)): # Loop through all _spot_data_unfiltered.csv files for a well
                 print('\nFile '+str(i), end =": ")
                 # Load spot_data_unfiltered and mass_tracks files
-                spots_table = np.genfromtxt(csvfile,delimiter=',')
+                spots_table = np.genfromtxt(csvfile,delimiter=',',skip_header=1)
                 filestr = str(csvfile)
                 mass_tracks = np.genfromtxt(filestr[:-25]+'_mass_tracks.csv',delimiter=',')
                 
@@ -263,11 +263,19 @@ def main():
                 UtIDs = np.unique(spots_table[:,2]) # nan comes out as a unique value b/c it is from the header string labels
                 UtIDs = UtIDs[~np.isnan(UtIDs)] # Removes nans
 
+                # Make column names for spots_table
+                spots_table_colnames = np.genfromtxt(csvfile,delimiter=',',dtype=str,max_rows=1)
                 # Add the unique trackID to first column of mass_tracks
+                # Make column names for mass_tracks
+                mass_tracks_colnames = ['UTrackID'] # initialize
                 if  np.size(UtIDs) == 1:
                     tmp_mass_tracks = np.concatenate((UtIDs,mass_tracks))
+                    for x in range(0,np.size(mass_tracks)):
+                        mass_tracks_colnames.append('timepoint'+str(x+1))
                 else:
                     tmp_mass_tracks = np.concatenate((np.transpose([UtIDs]),mass_tracks),axis=1) # Concatenate first column of unique trackIDs onto mass_tracks table
+                    for x in range(0,np.size(mass_tracks,axis=1)):
+                        mass_tracks_colnames.append('timepoint'+str(x+1))
 
                 # Append to aggregate variables
                 if i == 0 or np.size(agg_mass_tracks,0)<1: # If this is the first file or if the aggregate is empty, set the aggregates equal to the entire contents of the file
@@ -279,13 +287,14 @@ def main():
 
             # Save aggregated data if filtering turned off, perform filtering and saving if filtering is turned on
             well_info = re.search("/"+well+"_Pos[0-9]{,2}/(.*)Pos[0-9]{,2}_spot_data_unfiltered.csv",filestr).group(1)
+            well_info = well_info[:-1]
 
             if not os.path.exists(outpathstr+"well-level_aggregate_data/"+well): # Make directory for each well if it does not yet exist
                 os.mkdir(outpathstr+"well-level_aggregate_data/"+well)
 
             if not filter_opt:
-                pd.DataFrame(agg_mass_tracks).to_csv(outpathstr+"well-level_aggregate_data/"+well+"/"+well_info+"_agg_mass_tracks_unfiltered.csv",header=None,index=None)
-                pd.DataFrame(agg_spots).to_csv(outpathstr+"well-level_aggregate_data/"+well+"/"+well_info+"_agg_spots_unfiltered.csv",header=None,index=None)
+                pd.DataFrame(agg_mass_tracks,columns=mass_tracks_colnames).to_csv(outpathstr+"well-level_aggregate_data/"+well+"/"+well_info+"_agg_mass_tracks_unfiltered.csv")
+                pd.DataFrame(agg_spots,columns=spots_table_colnames).to_csv(outpathstr+"well-level_aggregate_data/"+well+"/"+well_info+"_agg_spots_unfiltered.csv",index=False)
             else:
                 # Perform filtering on selected well
                 print("Filtering "+well)

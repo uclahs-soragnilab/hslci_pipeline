@@ -30,7 +30,8 @@ unlabeled.pathways <- list.files(unlabeled_data_path, pattern = 'agg_mass_tracks
 #MCF7.pathways  <- paste0('Data/unfiltered_mass_tracks_MCF7/', MCF7.pathways);
 unlabeled.pathways <- paste0(unlabeled_data_path,'/',unlabeled.pathways);
 
-max.timepoint  <- 381;
+min.timepoint <- 21;
+max.timepoint  <- 404;
 #combined.pathways <- c(BT474.pathways, MCF7.pathways);
 combined.pathways <- unlabeled.pathways;
 
@@ -39,7 +40,7 @@ unlabeled.data <- NULL;
 
 for (i in 1:length(combined.pathways)) {
     
-    file.data <- read.csv(combined.pathways[i]);
+    file.data <- read.csv(combined.pathways[i], header = TRUE);
     
     #if (i <= 66) {
     #    file.data$UTrackID <- as.character(paste0("BT",format(file.data$UTrackID,scientific = FALSE)));
@@ -47,9 +48,9 @@ for (i in 1:length(combined.pathways)) {
     #    file.data$UTrackID <- as.character(paste0("MCF",format(file.data$UTrackID,scientific = FALSE)));
     #}
     
-    row.names(file.data)      <- file.data$UTrackID;
+    row.names(file.data)      <- format(file.data$UTrackID, scientific=FALSE);
     file.data                 <- file.data[, -c(1:2)]; # Remove first 2 label columns 
-    file.data                 <- file.data[,1:max.timepoint]; # Trim to max timepoint
+    file.data                 <- file.data[,min.timepoint:max.timepoint]; # Trim to min timepoint and max timepoint
     file.data[file.data == 0] <- NA; # Replace 0s with NAs
     
     # Extract features of interest
@@ -181,7 +182,7 @@ cat(paste0('Cross-validation score (CV): ', model.results$CV.score));
 ### PLOT ROC  ######################################################################
 autoplot(pred, type = 'roc');
 
-## APLY TRAINED MODEL TO FULL DATASET
+## APPLY TRAINED MODEL TO FULL DATASET
 viability.preds <- predict(learner, unlabeled.data[,c(2:ncol(unlabeled.data))]);
 table(viability.preds);
 
@@ -190,4 +191,4 @@ well.predictions <- data.frame(
     Model.pred = viability.preds
     );
 
-write.table(well.predictions, paste0(unlabeled_data_path,'/organoid_track_validity_prediction.txt'), sep = '\t')
+write.csv(well.predictions, paste0(unlabeled_data_path,'/organoid_track_validity_prediction.csv'), row.names=TRUE)
