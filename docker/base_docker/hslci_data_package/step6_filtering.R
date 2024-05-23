@@ -30,8 +30,8 @@ unlabeled.pathways <- list.files(unlabeled_data_path, pattern = 'agg_mass_tracks
 #MCF7.pathways  <- paste0('Data/unfiltered_mass_tracks_MCF7/', MCF7.pathways);
 unlabeled.pathways <- paste0(unlabeled_data_path,'/',unlabeled.pathways);
 
-min.timepoint <- 21;
-max.timepoint  <- 404;
+min.timepoint <- 24;
+max.timepoint  <- 407;
 #combined.pathways <- c(BT474.pathways, MCF7.pathways);
 combined.pathways <- unlabeled.pathways;
 
