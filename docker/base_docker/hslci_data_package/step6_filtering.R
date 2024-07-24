@@ -30,8 +30,9 @@ unlabeled.pathways <- list.files(unlabeled_data_path, pattern = 'agg_mass_tracks
 #MCF7.pathways  <- paste0('Data/unfiltered_mass_tracks_MCF7/', MCF7.pathways);
 unlabeled.pathways <- paste0(unlabeled_data_path,'/',unlabeled.pathways);
 
-min.timepoint <- 24;
-max.timepoint  <- 407;
+min.timepoint <- 1;
+max.timepoint  <- 424;
+num.timepoints <- max.timepoint - min.timepoint + 1;
 #combined.pathways <- c(BT474.pathways, MCF7.pathways);
 combined.pathways <- unlabeled.pathways;
 
@@ -54,15 +55,15 @@ for (i in 1:length(combined.pathways)) {
     file.data[file.data == 0] <- NA; # Replace 0s with NAs
     
     # Extract features of interest
-    count.na            <- as.data.frame(apply(file.data, 1, function(x) sum(is.na(x))));
+    ratio.na            <- as.data.frame(apply(file.data, 1, function(x) sum(is.na(x)/num.timepoints)));    
     initial.size.sample <- as.data.frame(apply(file.data, 1, function(x) median(na.omit(x)[1:2], na.rm = TRUE)));
     sample.IQR     <- as.data.frame(apply(file.data, 1, function(x) IQR(na.omit(x),na.rm = TRUE)));
     start.IQR      <- as.data.frame(apply(file.data, 1, function(x) subset.IQR(x,1,12)));
     end.IQR        <- as.data.frame(apply(file.data, 1, function(x) subset.IQR(x,-12,-1)));
     
     classifier.data <- data.frame(
-        UTrackID = row.names(count.na),
-        na.count = count.na[,1],
+        UTrackID = row.names(ratio.na),
+        na.ratio = ratio.na[,1],
         initial.size.sample = initial.size.sample[,1],
         sample.IQR = sample.IQR[,1],
         start.IQR = start.IQR[,1],
@@ -85,11 +86,13 @@ MCF7.E2             <- read.csv(paste0(training_data_path,'/2021_07_24_MCF-7_E2_
 MCF7.F8             <- read.csv(paste0(training_data_path,'/2021_07_24_MCF-7_F8_unfiltered_agg_mass_tracks.csv'));
 
 #Trim to max.timepoint
-max.timepoint = 381; 
-BT474.E2            <- BT474.E2[,2:(max.timepoint+2)]; #2: to cut off X column, max+2 due to x and UTrackID columns
-BT474.B8            <- BT474.B8[,2:(max.timepoint+2)];
-MCF7.E2             <- MCF7.E2[,2:(max.timepoint+2)];
-MCF7.F8             <- MCF7.F8[,2:(max.timepoint+2)];
+min.timepoint.training = 1;
+max.timepoint.training = 381; 
+num.timepoints.training = max.timepoint.training - min.timepoint.training + 1;
+BT474.E2            <- BT474.E2[,2:(max.timepoint.training+2)]; #2: to cut off X column, max+2 due to x and UTrackID columns
+BT474.B8            <- BT474.B8[,2:(max.timepoint.training+2)];
+MCF7.E2             <- MCF7.E2[,2:(max.timepoint.training+2)];
+MCF7.F8             <- MCF7.F8[,2:(max.timepoint.training+2)];
 
 # Load the manually annotated ground truth files for the training dataset
 BT474.E2.validation <- read.table(paste0(training_data_path,'/2022-03-09_BT474_E2_unfiltered_manuallabel.txt'), sep = '\t', header = T);
@@ -127,7 +130,7 @@ mass.data                 <- mass.data[, -1]; #Remove UTrackID column
 mass.data[mass.data == 0] <- NA; # Replace 0s with NAs
 
 # Extract features of interest in training dataset
-count.na            <- as.data.frame(apply(mass.data, 1, function(x) sum(is.na(x))));
+ratio.na            <- as.data.frame(apply(mass.data, 1, function(x) sum(is.na(x)/num.timepoints.training)));
 initial.size.sample <- as.data.frame(apply(mass.data, 1, function(x) median(na.omit(x)[1:2], na.rm = TRUE)));
 sample.IQR     <- as.data.frame(apply(mass.data, 1, function(x) IQR(na.omit(x),na.rm = TRUE)));
 start.IQR      <- as.data.frame(apply(mass.data, 1, function(x) subset.IQR(x,1,12)));
@@ -135,8 +138,8 @@ end.IQR        <- as.data.frame(apply(mass.data, 1, function(x) subset.IQR(x,-12
 
 # Create dataframe of features of interest and labels for ML analysis
 classifier.data <- data.frame(
-    UTrackID = row.names(count.na),
-    na.count = count.na[,1],
+    UTrackID = row.names(ratio.na),
+    na.ratio = ratio.na[,1],
     initial.size.sample = initial.size.sample[,1],
     sample.IQR = sample.IQR[,1],
     start.IQR = start.IQR[,1],
